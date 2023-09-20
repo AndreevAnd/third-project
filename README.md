@@ -73,11 +73,12 @@ Git хранит таблицу соответствий хеш → информ
 
 ```mermaid
 graph LR;
-  untracked (Неотслеживаемый) -- "git add" --> staged;
-  staged    -- "git commit"     --> tracked/comitted;
-  modified (Измененный) -- "git add" --> staged;
-  staged -- "Изменения" --> modified (Измененный);
-  tracked (Отслеживаемый)/comitted  -- "Изменения" --> modified (Измененный);
+  
+    A[UNTRACED неотслеживаемый] -->|git add| B[STAGED в списке на коммит + tracked]
+    C[MODIFIED измененный] -->|git add| B[STAGED в списке на коммит + tracked]
+    C[MODIFIED измененный] -->|git commit| D[TRACKED]
+    D[TRACKED] -->|изменения| C[MODIFIED измененный]
+    B[STAGED в списке на коммит + tracked] --> |изменения| C[MODIFIED измененный];
   
 ``` 
 
